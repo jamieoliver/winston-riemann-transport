@@ -1,6 +1,6 @@
 # Winston Riemann Transport
 
-A riemann[0] transport for winston[1]
+A [riemann][0] transport for [winston][1]
 
 ## Usage
 ``` js
