@@ -1,0 +1,35 @@
+{
+  "name": "winston-riemann-transport",
+  "version": "0.0.1",
+  "description": "A riemann transport for winston",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/7digital/winston-riemann-transport.git"
+  },
+  "keywords": [
+    "winston",
+    "logging",
+    "riemann"
+  ],
+  "author": {
+    "name": "Raoul Millais",
+    "url": "https://github.com/raoulmillais/"
+  },
+  "license": "BSD-2-Clause",
+  "contributors": [
+    {
+      "name": "Dave Aitken",
+      "url": "https://github.com/actionshrimp/"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/7digital/winston-riemann-transport/issues"
+  },
+  "homepage": "https://github.com/7digital/winston-riemann-transport",
+  "devDependencies": {
+    "mocha": "~1.15.1",
+    "chai": "~1.8.1"
+  }
+}
