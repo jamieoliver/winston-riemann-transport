@@ -63,6 +63,7 @@ Riemann.prototype.log = function log(level, msg, meta, callback) {
 		state: level,
 	};
 
+	this._ensureClient();
 	this.client.send(this.client.Event(event));
 
 	if (callback) {
