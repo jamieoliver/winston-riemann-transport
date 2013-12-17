@@ -6,28 +6,28 @@ describe('Winston Riemann Transport', function () {
 
 	describe('options', function () {
 
-		it('should default the name to the parent filename', function () {
+		it('defaults the name to the parent filename', function () {
 			var transport = new RiemannTransport({
 				host: 'riemann.acme.com'
 			});
 			assert.equal(transport.name, __filename);
 		});
 
-		it('should default the port to 5555', function () {
+		it('defaults the port to 5555', function () {
 			var transport = new RiemannTransport({
 				host: 'riemann.acme.com'
 			});
 			assert.equal(transport.port, 5555);
 		});
 
-		it('should default tags to an empty array', function () {
+		it('defaults tags to an empty array', function () {
 			var transport = new RiemannTransport({
 				host: 'riemann.acme.com'
 			});
 			assert.deepEqual(transport.tags, []);
 		});
 
-		it('should accept a string for tags', function () {
+		it('accepts a string for tags', function () {
 			var transport = new RiemannTransport({
 				host: 'riemann.acme.com',
 				tags: 'foo'
@@ -35,7 +35,7 @@ describe('Winston Riemann Transport', function () {
 			assert.deepEqual(transport.tags, [ 'foo' ]);
 		});
 
-		it('should accept an array of strings for tags', function () {
+		it('accepts an array of strings for tags', function () {
 			var transport = new RiemannTransport({
 				host: 'riemann.acme.com',
 				tags: [ 'foo', 'bar' ]
@@ -43,7 +43,7 @@ describe('Winston Riemann Transport', function () {
 			assert.deepEqual(transport.tags, [ 'foo', 'bar' ]);
 		});
 
-		it('should throw when tags not array or string', function () {
+		it('throws when tags not array or string', function () {
 			assert.throws(function () {
 				var transport = new RiemannTransport({
 					host: 'riemann.acme.com',
@@ -52,7 +52,7 @@ describe('Winston Riemann Transport', function () {
 			}, 'Tags must be strings');
 		});
 
-		it('should throw when tags array contains non-string', function () {
+		it('throws when tags array contains non-string', function () {
 			assert.throws(function () {
 				var transport = new RiemannTransport({
 					host: 'riemann.acme.com',
@@ -61,7 +61,7 @@ describe('Winston Riemann Transport', function () {
 			}, 'Tags must be strings');
 		});
 
-		it('should throw when no host is supplied', function () {
+		it('throws when no host is supplied', function () {
 			assert.throws(function () {
 				var transport = new RiemannTransport({});
 			}, 'Riemann host is required');
