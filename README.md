@@ -1,5 +1,7 @@
 # Winston Riemann Transport
 
+[![Build Status](https://travis-ci.org/7digital/winston-riemann-transport.png?branch=master)](http://travis-ci.org/7digital/winston-riemann-transport)
+
 A [riemann][0] transport for [winston][1]
 
 ## Usage
