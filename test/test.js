@@ -6,11 +6,11 @@ describe('Winston Riemann Transport', function () {
 
 	describe('options', function () {
 
-		it('defaults the name to the parent filename', function () {
+		it('defaults the service name to the parent filename', function () {
 			var transport = new RiemannTransport({
 				host: 'riemann.acme.com'
 			});
-			assert.equal(transport.name, __filename);
+			assert.equal(transport.serviceName, __filename);
 		});
 
 		it('defaults the port to 5555', function () {
@@ -18,6 +18,13 @@ describe('Winston Riemann Transport', function () {
 				host: 'riemann.acme.com'
 			});
 			assert.equal(transport.port, 5555);
+		});
+
+		it('sets the logger name to riemann', function () {
+			var transport = new RiemannTransport({
+				host: 'riemann.acme.com'
+			});
+			assert.equal(transport.name, 'riemann');
 		});
 
 		it('defaults tags to an empty array', function () {

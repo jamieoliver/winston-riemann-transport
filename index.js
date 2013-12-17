@@ -30,7 +30,7 @@ function Riemann(opts) {
 
 	winston.Transport.call(this, opts);
 
-	this.name = opts.name || module.parent.filename;
+	this.name = 'riemann';
 	this.tags = opts.tags || [];
 	this.serviceName = opts.name || module.parent.filename;
 	this.level = opts.logLevel || 'error';
