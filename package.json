@@ -1,6 +1,6 @@
 {
   "name": "winston-riemann-transport",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A riemann transport for winston",
   "main": "index.js",
   "scripts": {
