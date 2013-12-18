@@ -32,7 +32,8 @@
   "homepage": "https://github.com/7digital/winston-riemann-transport",
   "devDependencies": {
     "mocha": "~1.15.1",
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "i-spy": "git://github.com/7digital/i-spy.git"
   },
   "dependencies": {
     "winston": "~0.7.2",

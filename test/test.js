@@ -1,4 +1,4 @@
-var testUtils = require('./utils.js');
+var iSpy = require('i-spy');
 var assert = require('chai').assert;
 var RiemannTransport = require('../');
 
@@ -78,7 +78,7 @@ describe('Winston Riemann Transport', function () {
 
 	describe('log', function () {
 		var fakeClient = {
-			send: testUtils.createSpy(),
+			send: iSpy.createSpy(),
 			Event: function (opts) { return opts;  }
 		};
 
