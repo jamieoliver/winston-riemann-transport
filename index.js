@@ -40,37 +40,52 @@ function Riemann(opts) {
 
 util.inherits(Riemann, winston.Transport);
 
-Riemann.prototype._ensureClient = function _ensureClient(client) {
-	if (this.client) {
+Riemann.prototype._ensureClient = function ensureClient(client) {
+	var self = this;
+	if (self.client) {
 		return;
 	}
 
-	this.client = client || riemann.createClient({
-		host: this.host,
-		port: this.port || 5555
+	self.client = client || riemann.createClient({
+		host: self.host,
+		port: self.port || 5555
+	}, function connected() {
+		self.client.on('disconnect', function disconnected() {
+			delete self.client;
+		});
 	});
 };
 
 Riemann.prototype.log = function log(level, msg, meta, callback) {
 	var haveMeta = !!(meta && Object.keys(meta).length > 0);
 	var description = haveMeta
-		? util.format('%s : %j' , msg, meta)
+		? util.format('%s : %j', msg, meta)
 		: util.format('%s', msg);
 	var event = {
 		service: this.serviceName,
-		tags: [ 'Log', level ].concat(this.tags),
+		tags: ['Log', level].concat(this.tags),
 		description: description,
-		state: level,
+		state: level
 	};
 
 	this._ensureClient();
-	this.client.send(this.client.Event(event));
-
 	if (callback) {
+		//If a callback is passed in we want guaranteed delivery, so use TCP
+		this.client.send(this.client.Event(event), this.client.tcp);
 		process.nextTick(function () {
 			callback();
 		});
+	} else {
+		this.client.send(this.client.Event(event));
 	}
+};
+
+Riemann.prototype.disconnect = function disconnect(callback) {
+	this.client.disconnect(function disconnected() {
+		if (callback) {
+			return callback();
+		}
+	});
 };
 
 winston.transports.Riemann = module.exports = exports = Riemann;
