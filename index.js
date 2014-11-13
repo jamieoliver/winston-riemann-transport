@@ -28,6 +28,8 @@ function Riemann(opts) {
 		}
 	}
 
+	this.ensureDelivery = opts.ensureDelivery;
+
 	winston.Transport.call(this, opts);
 
 	this.name = 'riemann';
@@ -69,23 +71,24 @@ Riemann.prototype.log = function log(level, msg, meta, callback) {
 	};
 
 	this._ensureClient();
-	if (callback) {
-		//If a callback is passed in we want guaranteed delivery, so use TCP
+	if (this.ensureDelivery) {
 		this.client.send(this.client.Event(event), this.client.tcp);
-		process.nextTick(function () {
-			callback();
-		});
 	} else {
 		this.client.send(this.client.Event(event));
 	}
+
+	return callback && process.nextTick(function () {
+		callback();
+	});
 };
 
 Riemann.prototype.disconnect = function disconnect(callback) {
-	this.client.disconnect(function disconnected() {
-		if (callback) {
-			return callback();
-		}
-	});
+	if (this.client) {
+		return this.client.disconnect(function disconnected() {
+			return callback && callback();
+		});
+	}
+	return callback && callback();
 };
 
 winston.transports.Riemann = module.exports = exports = Riemann;
