@@ -24,7 +24,7 @@ to the filename of the module that required the transport.
 * __tags__: A string or array of strings to send as tags with the log message.
 The transport will also add 'Log' and the log level as tags with the message.
 
-### Installing winston-loggly
+### Installing winston-riemann-transport
 
 ``` bash
   $ npm install winston
