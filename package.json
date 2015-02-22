@@ -36,7 +36,9 @@
     "i-spy": "git://github.com/7digital/i-spy.git"
   },
   "dependencies": {
-    "winston": "~0.7.2",
     "riemann": "~0.4.0"
+  },
+  "peerDependencies": {
+    "winston": ">=0.7.2"
   }
 }
